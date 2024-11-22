@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="amulets-section">
     <h1>Diablo 2 Amulet Value Calculator</h1>
 
@@ -70,4 +70,4 @@ const calculateValue = () => {
 .amulets-section {
   margin-top: 10px;
 }
-</style>
+</style> -->

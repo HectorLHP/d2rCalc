@@ -25,13 +25,13 @@
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center">
           <v-btn
-            @click="$router.push('/amulets')"
+            @click="$router.push('/')"
             color="primary"
             class="mx-2"
             large
             outlined
           >
-            Go to Amulets
+            Go to Amulets (Coming soon)
           </v-btn>
         </v-col>
       </v-row>
