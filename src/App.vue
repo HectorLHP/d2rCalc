@@ -29,7 +29,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  color: rgb(247, 245, 245);
+  color: rgb(245, 247, 246);
 }
 
 /* Make the Vuetify app layout transparent */
@@ -37,6 +37,4 @@
   background-color: transparent;
   box-shadow: none;
 }
-
-
 </style>
