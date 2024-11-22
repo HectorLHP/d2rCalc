@@ -8,11 +8,14 @@
       </v-row>
 
       <!-- Row for two columns: Suffix and Prefix -->
-      <v-row>
+      <v-row id="input-row" align="start" no-gutters>
         <!-- Suffix Column (Left) -->
         <v-col
-          cols="12" sm="6" md="6"
-          v-for="(stat, index) in suffixStats"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+          v-for="stat in suffixStats"
           :key="'suffix-' + stat"
           class="d-flex flex-column"
         >
@@ -21,14 +24,20 @@
             v-model.number="itemStats[stat]"
             :disabled="itemStats[stat] === 0 && suffixCount >= 3"
             :max="maxValues[stat]"
+            :hint="`Max value is ${maxValues[stat]}`"
             type="number"
+            variant="solo"
+            class="stat-input"
           />
         </v-col>
 
         <!-- Prefix Column (Right) -->
         <v-col
-          cols="12" sm="6" md="6"
-          v-for="(stat, index) in prefixStats"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+          v-for="stat in prefixStats"
           :key="'prefix-' + stat"
           class="d-flex flex-column"
         >
@@ -37,41 +46,43 @@
             v-model.number="itemStats[stat]"
             :disabled="itemStats[stat] === 0 && prefixCount >= 3"
             :max="maxValues[stat]"
+            :hint="`Max value is ${maxValues[stat]}`"
             type="number"
+            variant="solo"
+            class="stat-input"
           />
         </v-col>
       </v-row>
 
       <!-- Action and Result Section -->
-      <v-row>
-        <v-col cols="12" class="text-center">
+      <v-row id="result-chart" justify="center">
+        <v-col cols="12" sm="6" md="4" lg="3">
           <!-- Speedometer Display -->
-          <Speedometer :totalScore="totalScore" />
-
-          <!-- Calculate Button -->
-          <v-btn @click="calculateValue" color="primary" large class="my-4">
-            Calculate Value
-          </v-btn>
+          <v-row justify="center">
+            <Speedometer :totalScore="totalScore" />
+          </v-row>
+          <!-- Buttons -->
+          <v-row justify="center" class="mt-6">
+            <v-btn @click="calculateValue" color="primary" large>
+              Calculate Value
+            </v-btn>
+            <v-btn @click="clearInputs" color="secondary" large class="ml-4">
+              Reset Inputs
+            </v-btn>
+          </v-row>
 
           <!-- Display Item Value -->
-          <p v-if="totalScore > 0" class="item-value-text">
-            Total Item Value: {{ totalScore }}
-            {{ totalScore === 1 ? 'point' : 'points' }}
-          </p>
+          <v-row justify="center">
+            <p v-if="totalScore > 0" class="item-value-text">
+              {{ totalScore }}
+              {{ totalScore === 1 ? 'point' : 'points' }}
+            </p>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
   </v-app>
 </template>
-
-<style scoped>
-/* Adjust column spacing and margins */
-.v-col {
-  margin-bottom: 1rem;
-}
-</style>
-
-
 
 <script setup>
 import { ref, reactive, computed, watch } from 'vue';
@@ -155,39 +166,34 @@ watch(
 const calculateValue = () => {
   totalScore.value = calculateItemValue(itemStats);
 };
+
+// Function to reset all input fields
+const clearInputs = () => {
+  Object.keys(itemStats).forEach((stat) => {
+    itemStats[stat] = 0; // Reset each stat to 0
+  });
+  totalScore.value = 0; // Reset the total score
+};
+
 </script>
 
 <style scoped>
-.results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 220px;
-}
-
 .item-value-text {
   font-size: 30px;
   font-weight: bold;
   color: rgb(55, 203, 92);
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
-/* Adjust the row container to reduce space between columns */
-.v-row {
-  max-width: 300px;
-  margin: 0; /* Remove any outer margin */
-  padding: 10px; /* Remove padding to avoid extra space */
-  justify-content: space-between; /* Spread columns without extra space in the center */
+/* Ensure higher specificity for hint messages */
+.stat-input >>> .v-messages__message {
+  color: #f9f6f6 !important; /* Change hint text color */
+  font-size: 14px; /* Optional: Adjust font size */
+  font-style: italic; /* Optional: Add font style */
 }
 
 .v-text-field {
-  width: 120%;  
-  max-height: 55px;
-  margin: -10px;
-  background-color: rgba(246, 246, 246, 0.8);
-  border-radius: 15px;
-  padding: 0;
-  box-sizing: border-box;
+  width: 200px;
 }
 
 h1 {
