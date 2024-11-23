@@ -53,18 +53,19 @@
         <v-col
           cols="12"
           md="4"
-          class="d-flex flex-column justify-center align-center results-block"
+          class="d-flex flex-column justify-center align-center results-block mt-11"
         >
           <Speedometer :totalScore="totalScore" />
-          <v-btn @click="calculateValue" color="primary" large class="mt-6">
+          <p v-if="totalScore > 0" class="item-value-text mt-4">
+            Ring Rating: {{ totalScore }}
+            {{ totalScore === 1 ? 'point' : 'points' }}
+          </p>
+          <v-btn @click="calculateValue" color="primary" large class="mt-5">
             Calculate Value
           </v-btn>
           <v-btn @click="clearInputs" color="secondary" large class="mt-4">
             Reset Inputs
           </v-btn>
-          <p v-if="totalScore > 0" class="item-value-text mt-4">
-            {{ totalScore }} {{ totalScore === 1 ? 'point' : 'points' }}
-          </p>
         </v-col>
       </v-row>
     </v-container>
@@ -73,7 +74,7 @@
 
 <script setup>
 import { ref, reactive, computed, watch } from 'vue';
-import Speedometer from './Speedometer.vue';
+import Speedometer from './vue-speedometer.vue';
 import {
   maxValues,
   prefixStats,
@@ -167,7 +168,7 @@ const clearInputs = () => {
 <style scoped>
 .title-image {
   max-width: 100%; /* Ensure the image fits within its container */
-  height: 100px;   /* Maintain aspect ratio */
+  height: 100px; /* Maintain aspect ratio */
   margin-bottom: 20px; /* Optional spacing */
 }
 
@@ -194,14 +195,17 @@ h3 {
 }
 
 .item-value-text {
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(55, 203, 92);
+  font: bold 30px papyrus;
+  color: rgb(169, 176, 171);
   margin-top: 0px;
 }
 
 .results-block {
-  margin-top: 50px;
+  background-color: rgba(57, 53, 53, 0.8); /* Semi-transparent white */
+  border-radius: 10px; /* Optional: Rounded corners */
+  padding: 20px; /* Optional: Add padding inside the section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+  margin-top: 0px;
   width: 100%; /* Make sure it takes full width of its container */
   max-width: 600px; /* Optional: Set a maximum size */
 }
