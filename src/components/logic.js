@@ -79,19 +79,19 @@ export function calculatePoints(value, max) {
   }
 }
 
-export const getRingRating = (value) => {
-  console.log('Ring value:', value); // Add this line to inspect the value
-  if (value >= 6) {
-    return 'Trophy';
-  } else if (value >= 5.5) {
-    return 'Jackpot';
-  } else if (value >= 5) {
-    return 'Amazing';
-  } else if (value >= 4.5) {
-    return 'Great find';
-  } else if (value >= 4) {
-    return 'Decent ring';
-  } else {
-    return 'Charsi';
-  }
-};
+// export const getRingRating = (value) => {
+//   console.log('Ring value:', value); // Add this line to inspect the value
+//   if (value >= 6) {
+//     return 'Trophy';
+//   } else if (value >= 5.5) {
+//     return 'Jackpot';
+//   } else if (value >= 5) {
+//     return 'Amazing';
+//   } else if (value >= 4.5) {
+//     return 'Great find';
+//   } else if (value >= 4) {
+//     return 'Decent ring';
+//   } else {
+//     return 'Charsi';
+//   }
+// };

@@ -1,8 +1,9 @@
 <template>
-  <div class="speedometer-container">
-    <!-- Vue Speedometer Component -->
-    <vue-speedometer      
-      :width="580"
+  <v-col
+    class="mt-8 results-block d-flex justify-center align-center flex-column"
+  >
+    <vue-speedometer
+      :width="450"
       :needleHeightRatio="0.9"
       :value="totalScore"
       :currentValueText="` `"
@@ -11,8 +12,8 @@
       :maxSegmentLabels="6"
       :customSegmentStops="[0, 3.5, 4, 4.5, 5, 5.5, 6]"
       :customSegmentLabels="customSegmentLabels"
-      :ringWidth="57"
-      :needleTransitionDuration="4000"
+      :ringWidth="50"
+      :needleTransitionDuration="5000"
       needleTransition="easeElastic"
       needleColor="#a7ff83"
       :segmentColors="[
@@ -24,49 +25,70 @@
         'lime',
       ]"
     />
-    <!-- Ring Rating Text -->
-  </div>
+    <p v-if="totalScore > 0" class="item-value-text mb-4">
+      Ring Rating: {{ totalScore }}
+      {{ totalScore === 1 ? 'point' : 'points' }}
+    </p>
+    <div class="d-flex flex-column align-center">
+      <v-btn
+        @click="$emit('calculate-value')"
+        color="primary"
+        large
+        class="mb-2"
+      >
+        Calculate Value
+      </v-btn>
+      <v-btn @click="$emit('clear-inputs')" color="secondary" large>
+        Reset Inputs
+      </v-btn>
+    </div>
+  </v-col>
 </template>
 
 <script setup>
 import VueSpeedometer from 'vue-speedometer';
-import { computed } from 'vue';
-import { getRingRating } from './logic.js'; // Ensure the path is correct
 
-// Props for dynamic totalScore
+// Props
 const props = defineProps({
   totalScore: {
     type: Number,
-    required: true, // Ensure the prop is passed
+    required: true,
   },
 });
 
-// Compute the ring rating based on totalScore
-const ringRating = computed(() => getRingRating(props.totalScore));
-
 // Segment labels for the speedometer
 const customSegmentLabels = [
-  { text: 'Charsi', position: 'INSIDE', color: '#555' },
-  { text: 'Self Use', position: 'INSIDE', color: '#555' },
-  { text: 'Good', position: 'INSIDE', color: '#black' },
-  { text: 'Great', position: 'INSIDE', color: 'black', fontSize: '15px' },
-  { text: 'Elite', position: 'INSIDE', color: 'orangered', fontSize: '15px' },
-  { text: 'TROPHY', position: 'INSIDE', color: 'blue', fontSize: '12px' },
+  { text: 'Charsi', position: 'INSIDE', color: '#555', fontSize: '12px' },
+  { text: 'Self Use', position: 'INSIDE', color: '#555', fontSize: '11px' },
+  { text: 'Good', position: 'INSIDE', color: '#black', fontSize: '12px' },
+  { text: 'Great', position: 'INSIDE', color: 'black', fontSize: '12px' },
+  { text: 'Elite', position: 'INSIDE', color: 'orangered', fontSize: '12px' },
+  { text: 'Trophy', position: 'INSIDE', color: 'blue', fontSize: '12px' },
 ];
 </script>
 
 <style>
-.speedometer-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
+.results-block {
+  background-color: rgba(57, 53, 53, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
 }
 
-.ring-rating-text {
-  font-size: 34px; /* Adjust the size */
-  font-weight: bold; /* Optional: Make it bold */
-  color: gold; /* Optional: Change the color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Optional: Add some flair */
+.item-value-text {
+  font: bold 30px papyrus;
+  color: rgb(169, 176, 171);
 }
+
+.vue-speedometer {
+  height: 250px;
+}
+
+/* .speedometer {
+  width: 100%;
+  height: 50vh; 
+} */
 </style>

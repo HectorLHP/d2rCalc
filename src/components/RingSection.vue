@@ -48,24 +48,36 @@
             </div>
           </div>
         </v-col>
-
         <!-- Speedometer and Buttons -->
-        <v-col
-          cols="12"
-          md="4"
-          class="d-flex flex-column justify-center align-center results-block mt-11"
-        >
-          <Speedometer :totalScore="totalScore" />
-          <p v-if="totalScore > 0" class="item-value-text mt-4">
-            Ring Rating: {{ totalScore }}
-            {{ totalScore === 1 ? 'point' : 'points' }}
-          </p>
-          <v-btn @click="calculateValue" color="primary" large class="mt-5">
-            Calculate Value
-          </v-btn>
-          <v-btn @click="clearInputs" color="secondary" large class="mt-4">
-            Reset Inputs
-          </v-btn>
+
+        <Speedometer
+          :totalScore="totalScore"
+          @calculate-value="calculateValue"
+          @clear-inputs="clearInputs"
+        />
+
+        <!-- INSTRUCTIONS -->
+
+        <v-col cols="12" md="4" class="d-flex flex-column justify-center mt-10 ml-4">
+          <div class="explanation-text mt-4">
+            <h4>Point System Explanation</h4>
+            <p>
+              The rating system evaluates various attributes like Faster Cast
+              Rate, Strength, Dexterity, and Resistances. Rings with multiple
+              high-value attributes score higher.
+            </p>
+            <ul>
+              <li><strong>3.5-4 Points:</strong> Mostly self use.</li>
+              <li>
+                <strong>4-5 Points:</strong> Good-value rings suitable for most
+                builds.
+              </li>
+              <li>
+                <strong>5-6 Points:</strong> Perfectly rolled rings with optimal
+                stats.
+              </li>
+            </ul>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -178,14 +190,14 @@ h3 {
 }
 
 /* Ensure higher specificity for hint messages */
-.stat-input >>> .v-messages__message {
-  color: #f9f6f6 !important; /* Change hint text color */
-  font-size: 14px; /* Optional: Adjust font size */
-  font-style: italic; /* Optional: Add font style */
-}
+
+/* .stat-input >>> .v-messages__message {
+  color: #b01a1a !important;
+  font-size: 14px;
+  font-style: italic; 
+} */
 
 .stat-input {
-  max-width: 100%;
   height: 50px;
   margin-bottom: 10px;
 }
@@ -200,18 +212,8 @@ h3 {
   margin-top: 0px;
 }
 
-.results-block {
-  background-color: rgba(57, 53, 53, 0.8); /* Semi-transparent white */
-  border-radius: 10px; /* Optional: Rounded corners */
-  padding: 20px; /* Optional: Add padding inside the section */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
-  margin-top: 0px;
-  width: 100%; /* Make sure it takes full width of its container */
-  max-width: 600px; /* Optional: Set a maximum size */
-}
-
-.speedometer {
-  width: 100%;
-  height: 50vh; /* Adjust height to be 50% of the viewport height */
+.explanation-text {
+  
+  color: wheat;
 }
 </style>
