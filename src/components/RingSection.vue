@@ -60,21 +60,24 @@
 
         <v-col cols="12" md="4" class="d-flex flex-column justify-center mt-10 ml-4">
           <div class="explanation-text mt-4">
-            <h4>Point System Explanation</h4>
+            <h4>INFO</h4>
             <p>
-              The rating system evaluates various attributes like Faster Cast
-              Rate, Strength, Dexterity, and Resistances. Rings with multiple
-              high-value attributes score higher.
+              This is just a guide for approximate value, in some cases a 3.5 points ring can be exactly what you need, and a 5 points ring can be barely usable/sellable
+              <!-- Some stats are more important than others and some combinations are not really worth much. A 4 point ring can be very sought after if it has the right stats. For example: 10fcr, 20str, 15dex, 11@ would be very valuable even if it's missing 2 prefixes. 
+              And a 5 points ring could be barely usable/sellable. For example: 10fcr, 6ml, 9min dmg, 60mana, 30psn res, could be hard to sell since melee characters  -->
+            
             </p>
             <ul>
-              <li><strong>3.5-4 Points:</strong> Mostly self use.</li>
+              <li><strong>4 Points:</strong> Usable, borderline sellable with the right stats.</li>
+              <li><strong>4.5 Points:</strong> Good.</li>
               <li>
-                <strong>4-5 Points:</strong> Good-value rings suitable for most
-                builds.
+                <strong>5 Points:</strong> Great. High demand if desirable stats.
               </li>
               <li>
-                <strong>5-6 Points:</strong> Perfectly rolled rings with optimal
-                stats.
+                <strong>5.5 Points:</strong> Elite. Very valuable.
+              </li>
+              <li>
+                <strong>6 Points:</strong> Top-tier, trophy item.
               </li>
             </ul>
           </div>
