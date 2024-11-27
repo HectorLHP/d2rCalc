@@ -1,6 +1,6 @@
 <template>
   <v-col
-    class="mt-8 results-block d-flex justify-center align-center flex-column"
+    class="mt-11 results-block d-flex justify-center align-center flex-column"
   >
     <vue-speedometer
       :width="450"

@@ -9,6 +9,7 @@ export const prefixStats = [
   'lightningRes',
   'poisonRes',
   'allRes',
+  'manaRegen',
 ];
 
 export const suffixStats = [
@@ -42,6 +43,7 @@ export const maxValues = {
   lightningRes: 30,
   poisonRes: 30,
   allRes: 11,
+  manaRegen: 10,
 };
 
 export function calculateItemValue(itemStats) {

@@ -2,19 +2,45 @@
   <v-app>
     <v-container class="d-flex flex-column justify-center" fluid>
       <!-- Title -->
-      <v-row justify="center">
+      <v-row id="title-row" justify="center">
         <img
           src="/images/RingsBanner2.png"
           alt="Rare Rings"
           class="title-image"
         />
       </v-row>
+      <!-- Back to Landing Page Button -->
+      <v-row justify="center">
+        <v-btn>
+
+          <router-link to="/" class="v-btn v-btn--outlined">
+            Back to Menu
+          </router-link>
+        </v-btn>
+      </v-row>
+
+      <!-- Dropdown for Ring Type -->
+
+      <v-row id="ring-type-row">
+        <v-col cols="12" class="d-flex flex-row">
+          <v-select
+            v-model="selectedRingType"
+            :items="ringTypes"
+            label="Select Ring Type"
+            variant="solo"
+            class="ring-type-dropdown"
+          />
+        </v-col>
+      </v-row>
 
       <!-- Main Section -->
-      <v-row id="main-row" class="custom-row" align="start">
+
+      <v-row id="main-row" align="start">
         <!-- Inputs Section -->
-        <v-col cols="12" md="8" class="d-flex flex-row input-columns">
+
+        <v-col cols="12" class="d-flex flex-row input-columns">
           <!-- Suffix Stats -->
+
           <div class="d-flex flex-column suffix-column mr-4">
             <h3>Suffix Stats</h3>
             <div v-for="stat in suffixStats">
@@ -32,6 +58,7 @@
           </div>
 
           <!-- Prefix Stats -->
+
           <div class="d-flex flex-column prefix-column">
             <h3>Prefix Stats</h3>
             <div v-for="stat in prefixStats">
@@ -48,6 +75,7 @@
             </div>
           </div>
         </v-col>
+
         <!-- Speedometer and Buttons -->
 
         <Speedometer
@@ -58,27 +86,32 @@
 
         <!-- INSTRUCTIONS -->
 
-        <v-col cols="12" md="4" class="d-flex flex-column justify-center mt-10 ml-4">
+        <v-col
+          cols="12"
+          md="4"
+          class="d-flex flex-column justify-center mt-10 ml-4"
+        >
           <div class="explanation-text mt-4">
             <h4>INFO</h4>
             <p>
-              This is just a guide for approximate value, in some cases a 3.5 points ring can be exactly what you need, and a 5 points ring can be barely usable/sellable
+              This is just a guide for approximate value, in some cases a 3.5
+              points ring can be exactly what you need, and a 5 points ring can
+              be barely usable/sellable
               <!-- Some stats are more important than others and some combinations are not really worth much. A 4 point ring can be very sought after if it has the right stats. For example: 10fcr, 20str, 15dex, 11@ would be very valuable even if it's missing 2 prefixes. 
               And a 5 points ring could be barely usable/sellable. For example: 10fcr, 6ml, 9min dmg, 60mana, 30psn res, could be hard to sell since melee characters  -->
-            
             </p>
             <ul>
-              <li><strong>4 Points:</strong> Usable, borderline sellable with the right stats.</li>
+              <li>
+                <strong>4 Points:</strong> Usable, borderline sellable with the
+                right stats.
+              </li>
               <li><strong>4.5 Points:</strong> Good.</li>
               <li>
-                <strong>5 Points:</strong> Great. High demand if desirable stats.
+                <strong>5 Points:</strong> Great. High demand if desirable
+                stats.
               </li>
-              <li>
-                <strong>5.5 Points:</strong> Elite. Very valuable.
-              </li>
-              <li>
-                <strong>6 Points:</strong> Top-tier, trophy item.
-              </li>
+              <li><strong>5.5 Points:</strong> Elite. Very valuable.</li>
+              <li><strong>6 Points:</strong> Top-tier, trophy item.</li>
             </ul>
           </div>
         </v-col>
@@ -119,6 +152,10 @@ const itemStats = reactive({
 }); // Holds the user inputs
 const totalScore = ref(0);
 
+// Ring types for dropdown
+const ringTypes = ['Rare Ring', 'Blood Ring', 'Caster Ring'];
+const selectedRingType = ref('Rare Ring'); // Default type
+
 // Display names for the stats
 const displayNames = {
   fcr: 'FCR',
@@ -137,6 +174,7 @@ const displayNames = {
   allRes: 'All Res',
   minDamage: 'Min Damage',
   maxDamage: 'Max Damage',
+  manaRegen: 'Mana Regen',
 };
 
 // Computed properties to count prefixes and suffixes
@@ -184,7 +222,14 @@ const clearInputs = () => {
 .title-image {
   max-width: 100%; /* Ensure the image fits within its container */
   height: 100px; /* Maintain aspect ratio */
-  margin-bottom: 20px; /* Optional spacing */
+  margin-bottom: 10px; /* Optional spacing */
+}
+
+.ring-type-dropdown {
+  margin-bottom: 20px;
+  max-width: 150px;
+  height: 55px;
+  max-height: 35px;
 }
 
 h3 {
@@ -216,7 +261,6 @@ h3 {
 }
 
 .explanation-text {
-  
   color: wheat;
 }
 </style>
