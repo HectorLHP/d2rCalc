@@ -87,8 +87,7 @@
         <!-- INSTRUCTIONS -->
 
         <v-col
-          cols="12"
-          md="4"
+                  
           class="d-flex flex-column justify-center mt-10 ml-4"
         >
           <div class="explanation-text mt-4">

@@ -35,6 +35,43 @@
           </v-btn>
         </v-col>
       </v-row>
+
+      <!-- Login, Register, and Guest Access -->
+      <v-row class="mt-5">
+        <v-col cols="12" md="4" class="d-flex justify-center">
+          <v-btn
+            @click="goToLogin"
+            color="secondary"
+            class="mx-2"
+            large
+            outlined
+          >
+            Login
+          </v-btn>
+        </v-col>
+        <v-col cols="12" md="4" class="d-flex justify-center">
+          <v-btn
+            @click="goToRegister"
+            color="secondary"
+            class="mx-2"
+            large
+            outlined
+          >
+            Register
+          </v-btn>
+        </v-col>
+        <v-col cols="12" md="4" class="d-flex justify-center">
+          <v-btn
+            @click="useAsGuest"
+            color="secondary"
+            class="mx-2"
+            large
+            outlined
+          >
+            Continue as Guest
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </v-app>
 </template>
@@ -42,6 +79,18 @@
 <script>
 export default {
   name: 'LandingPage',
+  methods: {
+    goToLogin() {
+      this.$router.push("/login");  // Route to login page
+    },
+    goToRegister() {
+      this.$router.push("/register");  // Route to register page
+    },
+    useAsGuest() {
+      console.log("Guest access");
+      // Implement guest access logic (e.g., anonymous authentication)
+    },
+  },
 };
 </script>
 

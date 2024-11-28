@@ -69,7 +69,7 @@ const customSegmentLabels = [
 
 <style>
 .results-block {
-  background-color: rgba(57, 53, 53, 0.8);
+  background-color: transparent;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
